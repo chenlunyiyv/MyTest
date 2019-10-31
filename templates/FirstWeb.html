@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no">
+    <title>School sentiment</title>
+    <!-- css样式start -->
+    <!-- 3D旋转 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/xuanzhuan.css') }}">
+    <!-- 渐变 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bgcolor.css') }}">
+    <!-- css样式end -->
+    <!-- JavaScript脚本start -->
+    <script src="{{ url_for('static', filename='js/xuanzhuan.js') }}"></script>
+    <!-- 渐变js文档start -->
+    <script src="{{ url_for('static', filename='js/backgoundcolor.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bgcolor.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").gradientify({
+                gradients: [
+                    { start: [49, 76, 172], stop: [242, 159, 191] },
+                    { start: [255, 103, 69], stop: [240, 154, 241] },
+                    { start: [33, 229, 241], stop: [235, 236, 117] }
+                ]
+            });
+        });
+    </script>
+    <!-- 渐变js文档end -->
+    <!-- JavaScript脚本end -->
+</head>
+<!-- html主题start -->
+
+<body>
+    <!-- 页面导航start -->
+    <div style="width: 90%; height: 90px;margin: 0 auto">
+        <div >
+            <span style="font-size: 45px; float: left;"><a style="text-decoration: none ;color: cornsilk;" href="http://127.0.0.1:5000/funny/">校园舆情分析</a></span>
+        </div>
+        <span style="float: right;margin-top: 30px;">
+            <span class="nav_a">
+                <a href="http://127.0.0.1:5000/sign_up/" style="text-decoration: none;color: aliceblue">
+                    登&nbsp;&nbsp;&nbsp;&nbsp;录
+                </a>
+            </span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="nav_a"><a href="http://127.0.0.1:5000/sign_in/"
+                    style="text-decoration: none;color: aliceblue">注&nbsp;&nbsp;&nbsp;&nbsp;册</a></span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="nav_a"><a href="http://127.0.0.1:5000/AboutUs/"
+                    style="text-decoration: none;color: aliceblue">关于我们</a></span>
+    </div>
+    <!-- 页面导航end -->
+    <hr>
+    <!-- 3D旋转木马start -->
+    <div id="drag-container" style="margin-top: 20px">
+        <div id="spin-container">
+            <a href="http://127.0.0.1:5000/Page1/"><img src="../static/images/1.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:5000/Page2/"><img src="../static/images/2.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:5000/Page3/"><img src="../static/images/3.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:5000/Page4/"><img src="../static/images/4.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:5000/Page5/"><img src="../static/images/5.jpeg" alt=""></a>
+            <a href="http://127.0.0.1:5000/Page6/"><img src="../static/images/6.jpeg" alt=""></a>
+        </div>
+        <p>校园舆情分析，基于大学生的情感分析平台</p>
+        <div id="ground"></div>
+        <!-- 3D旋转木马end -->
+    </div>
+    <!-- js脚本start -->
+    <script>
+        var radius = 340; //距离中心距离
+        var autoRotate = true;
+        var rotateSpeed = -60; //旋转速度
+        var imgWidth = 220;//照片宽
+        var imgHeight = 170;//照片高
+        setTimeout(init, 100);
+        var obox = document.getElementById('drag-container');
+        var ospin = document.getElementById('spin-container');
+        var aImg = ospin.getElementsByTagName('img');
+        var aVid = ospin.getElementsByTagName('video');
+        var aEle = [...aImg, ...aVid]; // gộp 2 mảng lại
+
+        ospin.style.width = imgWidth + "px";
+        ospin.style.height = imgHeight + "px";
+
+        var ground = document.getElementById('ground');
+        ground.style.width = radius * 3 + "px";
+        ground.style.height = radius * 3 + "px";
+
+        function init(delayTime) {
+            for (var i = 0; i < aEle.length; i++) {
+                aEle[i].style.transform = "rotateY(" + (i * (360 / aEle.length)) + "deg) translateZ(" + radius + "px)";
+                aEle[i].style.transition = "transform 1s";
+                aEle[i].style.transitionDelay = delayTime || (aEle.length - i) / 4 + "s";
+            }
+        }
+
+        function applyTranform(obj) {
+            if (tY > 180) tY = 180;
+            if (tY < 0) tY = 0;
+
+            obj.style.transform = "rotateX(" + (-tY) + "deg) rotateY(" + (tX) + "deg)";
+        }
+
+        function playSpin(yes) {
+            ospin.style.animationPlayState = (yes ? 'running' : 'paused');
+        }
+
+        var sX, sY, nX, nY, desX = 0,
+            desY = 0,
+            tX = 0,
+            tY = 10;
+        if (autoRotate) {
+            var animationName = (rotateSpeed > 0 ? 'spin' : 'spinRevert');
+            ospin.style.animation = `${animationName} ${Math.abs(rotateSpeed)}s infinite linear`;
+        }
+
+        document.onpointerdown = function (e) {
+            clearInterval(obox.timer);
+            e = e || window.event;
+            var sX = e.clientX,
+                sY = e.clientY;
+
+            this.onpointermove = function (e) {
+                e = e || window.event;
+                var nX = e.clientX,
+                    nY = e.clientY;
+                desX = nX - sX;
+                desY = nY - sY;
+                tX += desX * 0.1;
+                tY += desY * 0.1;
+                applyTranform(obox);
+                sX = nX;
+                sY = nY;
+            };
+
+            this.onpointerup = function (e) {
+                obox.timer = setInterval(function () {
+                    desX *= 0.95;
+                    desY *= 0.95;
+                    tX += desX * 0.1;
+                    tY += desY * 0.1;
+                    applyTranform(obox);
+                    playSpin(false);
+                    if (Math.abs(desX) < 0.5 && Math.abs(desY) < 0.5) {
+                        clearInterval(obox.timer);
+                        playSpin(true);
+                    }
+                }, 17);
+                this.onpointermove = this.onpointerup = null;
+            };
+
+            return false;
+        };
+
+        document.onmousewheel = function (e) {
+            e = e || window.event;
+            var d = e.wheelDelta / 20 || -e.detail;
+            radius += d;
+            init(1);
+        };
+    </script>
+    <!-- js脚本end -->
+</body>
+
+</html>

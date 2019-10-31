@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page1</title>
+
+
+    <canvas id="mycanvas" width="612" height="280"></canvas>
+    <!-- css样式start-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bgcolor.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page1.css') }}">
+    <!-- css样式end-->
+    <!-- js脚本start -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/horse.js') }}"></script>
+    <script type="text/javascript">
+        var stage = new createjs.Stage("mycanvas")
+        createjs.Ticker.addEventListener("tick", stageBreakHandler);
+        var img = new Image()
+        img.src = "../static/images/horse.png"
+        img.onload = function () {
+            var ss = new createjs.SpriteSheet({
+                "images": ["../static/images/horse.png"],
+                "frames": [
+                    [519, 1352, 468, 225, 0, -39.5, -6.05],
+                    [525, 694, 405, 225, 0, -39.5, -6.05],
+                    [402, 1577, 398, 241, 0, -37.5, -9.05],
+                    [0, 1565, 402, 239, 0, -33.5, -8.05],
+                    [521, 920, 430, 233, 0, -23.5, -14.05],
+                    [520, 0, 465, 228, 0, -7.5, -22.05],
+                    [515, 238, 479, 228, 0, -8.5, -24.05],
+                    [508, 470, 500, 224, 0, -2.5, -26.05],
+                    [0, 470, 508, 231, 0, -5.5, -20.05],
+                    [0, 238, 515, 232, 0, -9.5, -17.05],
+                    [0, 0, 520, 238, 0, -12.5, -11.05],
+                    [0, 920, 521, 219, 0, -18.5, -11.05],
+                    [0, 701, 525, 219, 0, -18.5, -11.05],
+                    [0, 1352, 519, 213, 0, -28.5, -10.05],
+                    [0, 1139, 520, 213, 0, -28.5, -10.05]
+                ],
+                "animations": {
+                    "run": [0, 14, "run"]
+                }
+            })
+
+            var sp = new createjs.Sprite(ss, "run")
+            stage.addChild(sp)
+            stage.update();
+        }
+
+        function stageBreakHandler(event) {
+            stage.update();
+        }
+    </script>
+    <!-- js脚本end -->
+</head>
+
+<body style="width: 1200px;margin: 0 auto;">
+    <!-- 标题图解说start -->
+    <div id="pic-jieshuo">
+        白驹过隙，时光荏苒；<br>唯有青春，不可错过。
+    </div>
+    <!-- 标题图解说end -->
+    <!-- 第一行词云位置start -->
+    <div style="border: 8px solid #153b4f;
+	border-image: url(../img/pic/border.png) 100% 8 0 stretch;
+	border-image-slice: 10 fill;height: 500px;">
+        <!-- 第一行词云标题start -->
+        <div >
+            &nbsp;&nbsp;来看看大学生谈及最多的话题都是什么(热门词汇——词云)：
+        </div>
+        <!-- 第一行词云标题end -->
+        <hr style="margin-top: 2px;">
+        <div class="col">
+            多输出回归支持 MultiOutputRegressor 可以被添加到任何回归器中。
+            这个策略包括对每个目标拟合一个回归器。因为每一个目标可以被一个回
+            归器精确地表示，通过检查对应的回归器，可以获取关于目标的信息。因
+            为对于每一个目标可以训练出一个回归器，所
+            以它无法利用目标之间的相关度信息。
+        </div>
+        <div class="col">
+            多输出回归支持 MultiOutputRegressor 可以被添加到任何回归器中。
+            这个策略包括对每个目标拟合一个回归器。因为每一个目标可以被一个回
+            归器精确地表示，通过检查对应的回归器，可以获取关于目标的信息。因
+            为对于每一个目标可以训练出一个回归器，所
+            以它无法利用目标之间的相关度信息。
+        </div>
+        <div class="col">
+            多输出回归支持 MultiOutputRegressor 可以被添加到任何回归器中。
+            这个策略包括对每个目标拟合一个回归器。因为每一个目标可以被一个回
+            归器精确地表示，通过检查对应的回归器，可以获取关于目标的信息。因
+            为对于每一个目标可以训练出一个回归器，所
+            以它无法利用目标之间的相关度信息。
+        </div>
+    </div>
+    <!-- 第一行词云位置end -->
+    <div style="border-top-color: cyan;">
+        <!-- 第二行饼状图标题start -->
+        <div>
+            &nbsp;&nbsp;情感属性(饼状图)：
+        </div>
+        <!-- 第二行饼状图标题end -->
+        <hr style="margin-top: 2px;">
+        <div class="col" >
+            在与方案1相关的全部信息中，正面信息占38.99%，负面信息占16.44%。在与方案2的全部信息中，
+             正面信息占49.60%，负面信息占22.45%。 在与方案3的全部信息中，正面信息占37.73%，
+             负面信息占27.74%
+        </div>
+        <div class="col">
+            在与方案1相关的全部信息中，正面信息占38.99%，负面信息占16.44%。在与方案2的全部信息中，
+             正面信息占49.60%，负面信息占22.45%。 在与方案3的全部信息中，正面信息占37.73%，
+             负面信息占27.74%
+        </div>
+        <div class="col">
+            在与方案1相关的全部信息中，正面信息占38.99%，负面信息占16.44%。在与方案2的全部信息中，
+             正面信息占49.60%，负面信息占22.45%。 在与方案3的全部信息中，正面信息占37.73%，
+             负面信息占27.74%
+        </div>
+        <div style="margin: 20px;">
+            在与方案1相关的全部信息中，正面信息占38.99%，负面信息占16.44%。在与方案2的全部信息中，
+             正面信息占49.60%，负面信息占22.45%。 在与方案3的全部信息中，正面信息占37.73%，
+             负面信息占27.74%
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/backgoundcolor.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/bgcolor.js') }}" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("body").gradientify({
+                gradients: [
+                    { start: [49, 76, 172], stop: [242, 159, 191] },
+                    { start: [255, 103, 69], stop: [240, 154, 241] },
+                    { start: [33, 229, 241], stop: [235, 236, 117] }
+                ]
+            });
+        });
+    </script>
+</body>
+
+</html>
