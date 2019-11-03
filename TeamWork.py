@@ -6,10 +6,6 @@ app = Flask(__name__)
 def First_web():
     return render_template("FirstWeb.html")
 
-@app.route('/funny/')
-def funny():
-    return render_template("funny.html")
-
 @app.route('/sign_in/')
 def sign_in():
     return render_template("sign_in.html")
@@ -48,9 +44,6 @@ def Page5():
 @app.route('/Page6/')
 def Page6():
     return render_template("Page6.htm")
-@app.route('/index/')
-def index():
-    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
