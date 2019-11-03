@@ -1,4 +1,4 @@
-# MyTest
+# Please read me first
 
 * Running program using: python TeamWork.py
 * Put the picture in the file named static images
